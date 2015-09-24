@@ -65,7 +65,7 @@
     size:(150, 30)
     pos_hint:{'center_x': .75,'center_y': .05}    
 # Nos servira para mandarle la imagen de plan de estudios de la carrea
-<Plan@Image>
+<Plan@AsyncImage>
     size: self.size
     size: self.texture_size
 # Agregamos la imagen de Plan y la ingresamos en Widget que se pueda mover
@@ -1203,7 +1203,8 @@
                 size: image.size
                 Plan:
                     id: image
-                    source: 'data/plan/'+root.requerimiento
+                    #source: 'data/plan/'+root.requerimiento
+                    source: 'http://faru.noip.me/data/plan/'+root.requerimiento
         Boton_Atras:
             on_press:  root.current = "carreras"
     PlanDeEstudio:
@@ -1220,6 +1221,7 @@
                 size: image.size
                 Plan:
                     id: image
-                    source: 'data/plan/'+root.plan
+                    #source: 'data/plan/'+root.plan
+                    source: 'http://faru.noip.me/data/plan/'+root.plan
         Boton_Atras:
             on_press:  root.current = "carreras"

@@ -3,9 +3,10 @@
 from kivy.app import App
 from kivy.uix.screenmanager import ScreenManager, Screen
 from _CarrerasDB_local  import *
+import urllib2
 
 class Ventanas(ScreenManager):
-    nom =""
+    nom =""    
     def datos(self,ventana, Resolucion):
         # Limpiar campos 
         self.nom = Resolucion
@@ -19,8 +20,8 @@ class Ventanas(ScreenManager):
         self.sede=""
         self.horario=""
         self.modalidad=""
-        self.plan="0.jpeg" 
-        self.requerimiento="0.jpeg" 
+        self.plan="0.jpeg"
+        self.requerimiento="0.jpeg"
         print("Limpiando Variables") 
 
     def carrera(self):
@@ -65,19 +66,21 @@ class Ventanas(ScreenManager):
                         self.modalidad= valor[i]
                 if i==6:
                     # print("imagen requerimiento: ",valor[i])
-                    self.requerimiento= "No Disponible"
+                    self.requerimiento= "0.jpeg"
                     if valor[i] != "":
                         self.requerimiento= valor[i]
                 if i==7:
                     # print("imagen plan: ",valor[i])
-                    self.plan= "No Disponible"
+                    self.plan= "0.jpeg"
                     if valor[i] != "":
-                        self.plan= valor[i]
+                       self.plan= valor[i]                     
+                        
         else:
             print("no esta DISPONIBLE")
     
 class AplicacionApp(App):
 	def build(self):
+       
 		return Ventanas()
 
 
