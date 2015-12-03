@@ -14,24 +14,26 @@
     size_hint:(None, None)
     size:(100, 44)
     pos_hint:{'center_x': .5 , 'center_y': .90}
+#Contenedor nos permite organizar todos los elemento  
+<Contenedor@GridLayout>:
+    cols: 1
+    orientation: 'vertical'
+    spacing: "20dp"
+    size_hint_x: 0.95
+    pos_hint: {'center_x': 0.5} 
 # Agregamos cada oferta academica que contendra las propiedades basicas
 <Add_Oferta@Button>
 	markup: True
-	#font_name: 'britanic.ttf'
-    pos_hint:{'center_x': .5,'center_y': .7}
-    size_hint:(.75, .10)
+    background_color: (.2, .4, 1, 3)
+    pos_hint: {'center_x': 0.5}  
+    font_size: "35dp"
 #Reutilizan Butones y dando un nombre 
 <Add_Facultad@Add_Oferta>
-	size:(250, 50)
-    size_hint:(None, None)
-    #font_name: 'britanic.ttf'
-#heredamos todos los atributos y solo cambiamos el text 
+	background_color: (0, 0, 181/255, 0.7) 
+#heredamos todos los atributos y solo cambiamos el tamaño
 <Add_Carrera@Add_Oferta>
-	size:(250, 50)
-	markup: True
     multiline: True 
-    #font_name: 'britanic.ttf'
-    size_hint:(None, None)      
+    font_size: "20dp"    
 #Declaracion  ventana de Facultades
 <Facultades@Screen>
 #Declaracion de Maestrias
@@ -93,106 +95,84 @@
                 pos: self.pos
                 size: self.size
                 # source: 'data/logouipapp.png' #se le agrega un imagen como fondo
-                source: 'data/fondo.jpg'
-        # Titulo: # se agrega el Titulo principal
-        #     text:('[b]Principal[/b]')
-        # Botones Para Oferta Academica
-        Image:
-            size_hint: None, None
-            size:(300, 100)
-            pos_hint:{'center_x': .5,'center_y': .90}
-            source: 'data/logo-uip.jpg'
-        Titulo:
-            text:('[b]OFERTA ACADEMICA[/b]')
-            font_size: 50
-            pos_hint:{'center_x': .5 , 'center_y': .70}
-        Add_Oferta: 
-            font_size: 35                 
-            text:('[b]LICENCIATURAS[/b]') # se le agrega el titulo al boton  
-            #background_color: (0, 0, 255, 0.5)        
-            pos_hint:{'center_x': .5,'center_y': .50}
-            on_press: 
-                root.current=('licenciatura')
-                root.transition = RiseInTransition()
-        Add_Oferta:
-            font_size: 30
-            text:('[b]LICENCIATURAS PARA EJECUTIVOS[/b]')
-           # color: (0, 0, 255/255, 0.9)
-          #  background_color: (255,255,255, 0.9)
-            pos_hint:{'center_x': .5,'center_y': .40}
-            on_press:
-                root.current=('licenciaturaPro') 
-                root.transition = FallOutTransition()
-        Add_Oferta:
-            font_size: 35
-            text:('[b]MAESTRIAS Y POSTGRADOS[/b]')
-           # background_color: (0, 0, 255, 0.5)
-            pos_hint:{'center_x': .5,'center_y': .30}
-            on_press: 
-                root.current=('maestria_y_postgrado') 
-                root.transition = FadeTransition() 
-        Image:
-            size_hint: None, None
-            size:(200, 50)
-            source: 'data/kivy.jpg'
+                source: 'data/fondo.jpg'  
+        BoxLayout:
+            orientation: 'vertical'  
+            spacing: "10dp"  
+            Image:
+                size_hint: None, None
+                size:(300, 100)
+                pos_hint:{'center_x': .5,'center_y': .90}
+                source: 'data/logo-uip.jpg'    
+            Titulo:
+                text:('[b]OFERTA ACADEMICA[/b]')
+                font_size: "50dp"
+            Contenedor:
+                size_hint_x: 0.75
+                Add_Oferta:                
+                    text:('[b]LICENCIATURAS[/b]') # se le agrega el titulo al boton  
+                    on_press: 
+                        root.current=('licenciatura')
+                        root.transition = RiseInTransition()
+                Add_Oferta:
+                    text:('[b]LICENCIATURAS PARA EJECUTIVOS[/b]')                 
+                    on_press:
+                        root.current=('licenciaturaPro') 
+                        root.transition = FallOutTransition()
+                Add_Oferta:
+                    text:('[b]MAESTRIAS Y POSTGRADOS[/b]')
+                    on_press: 
+                        root.current=('maestria_y_postgrado') 
+                        root.transition = FadeTransition() 
+                Label:
+                    pos_hint: {'center_x': 0.5} 
+                    text: 'Desarrollado Por Maryon Torres 2015'
+            Image:
+                size_hint: None, None
+                size:(200, 50)
+                source: 'data/kivy.jpg'
+
     Screen: #Licenciatura
         name: 'licenciatura'
         canvas:
             Rectangle:
                 pos: self.pos
                 size: self.size 
-                source: 'data/uip.jpg'       
-        Titulo:
-            text:
-                ('[b]LICENCIATURAS[/b]')
-            color: (0, 0, 150/255, 1)
-            font_size: 50
-        Add_Facultad:
-            text: '[b]ARQUITECTURA[/b]'
-            size: (300, 50)
-            background_color: (0, 0, 181/255, 0.7)
-            pos_hint:{'center_x': .5,'center_y': .78}
-            on_press: root.current = 'arquitectura'
-        Add_Facultad:
-            text: '[b]CIENCIAS ADMINISTRATIVAS[/b]'
-            size: (300, 50)
-            background_color: (0, 0, 181/255, 0.7)
-            pos_hint:{'center_x': .5,'center_y': .68}
-            on_press: root.current = 'cienciasAdministrativas'
-        Add_Facultad:
-            text: '[b]CIENCIAS DE LA SALUD[/b]'
-            size: (300, 50)
-            background_color: (0, 0, 181/255, 0.7)
-            pos_hint:{'center_x': .5,'center_y': .58}
-            on_press: root.current = 'salud'
-        Add_Facultad:
-            text: '[b]DERECHO[/b]'
-            size: (300, 50)
-            background_color: (0, 0, 181/255, 0.7)
-            pos_hint:{'center_x': .5,'center_y': .48}
-            on_press: root.current = 'derecho'
-        Add_Facultad:
-            text: '[b]GASTRONOMIA, HOTELERIA Y TURISMO[/b]'
-            size: (300, 50)
-            background_color: (0, 0, 181/255, 0.7)
-            pos_hint:{'center_x': .5,'center_y': .38}
-            on_press: root.current = 'gastronomia'
-        Add_Facultad:
-            text: '[b]INGENIERIA Y SISTEMAS[/b]'
-            size: (300, 50)
-            background_color: (0, 0, 181/255, 0.7)
-            pos_hint:{'center_x': .5,'center_y': .28}
-            on_press: root.current = 'ingsistemas'
-        Add_Facultad:
-            text: '[b]MARITIMA Y PORTUARIA[/b]'
-            size: (300, 50)
-            background_color: (0, 0, 181/255, 0.7)
-            pos_hint:{'center_x': .5,'center_y': .18}
-            on_press: root.current = 'maritima'
-		Boton_Atras:
-			background_color: (0, 0, 181/255, 0.7)
-		    pos_hint:{'center_x': .5,'center_y': .07}    
-            on_press: root.current = "principal" 
+                source: 'data/uip.jpg'  
+        BoxLayout:
+            orientation: 'vertical'  
+            spacing: "10dp"            
+            Titulo:
+                text:
+                    ('[b]LICENCIATURAS[/b]')
+                color: (0, 0, 150/255, 1)
+                font_size: 50
+            Contenedor:
+                size_hint_x: 0.85
+                Add_Facultad:
+                    text: '[b]ARQUITECTURA[/b]'
+                    on_press: root.current = 'arquitectura'
+                Add_Facultad:
+                    text: '[b]CIENCIAS ADMINISTRATIVAS[/b]'
+                    on_press: root.current = 'cienciasAdministrativas'
+                Add_Facultad:
+                    text: '[b]CIENCIAS DE LA SALUD[/b]' 
+                    on_press: root.current = 'salud'
+                Add_Facultad:
+                    text: '[b]DERECHO[/b]'
+                    on_press: root.current = 'derecho'
+                Add_Facultad:
+                    text: '[b]GASTRONOMIA, HOTELERIA Y TURISMO[/b]'
+                    on_press: root.current = 'gastronomia'
+                Add_Facultad:
+                    text: '[b]INGENIERIA Y SISTEMAS[/b]'
+                    on_press: root.current = 'ingsistemas'
+                Add_Facultad:
+                    text: '[b]MARITIMA Y PORTUARIA[/b]'
+                    on_press: root.current = 'maritima'
+    		Boton_Atras:
+    			background_color: (0, 0, 181/255, 0.7) 
+                on_press: root.current = "principal" 
     Screen: #LicenciaturaPro
         name: 'licenciaturaPro'
         canvas:
@@ -200,77 +180,64 @@
                 pos: self.pos
                 size: self.size
                 source: 'data/ejec.jpg'
-        Titulo:
-            text:
-                ('[b][color=#CB6900]LICENCIATURAS  PARA EJECUTIVOS[/b]')
-        Add_Carrera:
-            text:'[b]LICENCIATURA EN MERCADEO Y PUBLICIDAD'
-            background_color: (1, 128/255, 0, 0.8)
-            pos_hint:{'center_x': .5,'center_y': .78}
-            size:(400, 50)
-            on_press: 
-                root.current=('carreras')
-                root.datos('licenciaturaPro',"CTF-24-2014, del 28 de abril de 2014")
-                root.carrera()
-        Add_Carrera:
-            text:'[b]LICENCIATURA EN CONTABILIDAD'
-            background_color: (1, 128/255, 0, 0.8)
-            pos_hint:{'center_x': .5,'center_y': .68}
-            size:(400, 50)
-            on_press: 
-                root.current=('carreras')
-                root.datos('licenciaturaPro',"CTF-127-2012 de 12 de noviembre de 2012")
-                root.carrera() 
-        Add_Carrera:
-            text:'[b]LICENCIATURA EN COMERCIO INTERNACIONAL'
-            background_color: (1, 128/255, 0, 0.8)
-            pos_hint:{'center_x': .5,'center_y': .58}
-            size:(400, 50)
-            on_press: 
-                root.current=('carreras')
-                root.datos('licenciaturaPro',"CTF-115-2011, del 27 de diciembre de 2011")
-                root.carrera()
-        Add_Carrera:
-            text:'[b]LICENCIATURA EN BANCA Y FINANZAS'
-            background_color: (1, 128/255, 0, 0.8)
-            pos_hint:{'center_x': .5,'center_y': .48}
-            size:(400, 50)
-            on_press: 
-                root.current=('carreras')
-                root.datos('licenciaturaPro',"CTF-224-2011, del 27 de abril de 2011")
-                root.carrera()
-        Add_Carrera:
-            text:'[b]   LICENCIATURA EN INGENIERIA\n DE SISTEMAS COMPUTACIONALES'
-            multiline: True
-            background_color: (1, 128/255, 0, 0.8)
-            pos_hint:{'center_x': .5,'center_y': .38}
-            size:(400, 50)
-            on_press: 
-                root.current=('carreras')
-                root.datos('licenciaturaPro',"CACAD-R-03-2009, del 05 de junio de 2009 I Sede: Panama")
-                root.carrera()
-        Add_Carrera:
-            text:'[b]LICENCIATURA EN ADMINISTRACION\n            DE RECURSOS HUMANOS'
-            background_color: (1, 128/255, 0, 0.8)
-            pos_hint:{'center_x': .5,'center_y': .28}
-            size:(400, 50)
-            on_press: 
-                root.current=('carreras')
-                root.datos('licenciaturaPro',"CTF-195-2011, del 27 de diciembre de 2011")
-                root.carrera()
-        Add_Carrera:
-            text:'[b]           LICENCIATURA EN\nADMINISTRACION DE NEGOCIOS'
-            background_color: (1, 128/255, 0, 0.8)
-            pos_hint:{'center_x': .5,'center_y': .18}
-            size:(400, 50)
-            on_press: 
-                root.current=('carreras')
-                root.datos('licenciaturaPro',"CTF-124-2012, del 12 de noviembre de 2012")
-                root.carrera()
-        Boton_Atras:  
-        	background_color: (1, 128/255, 0, 0.8)
-        	pos_hint:{'center_x': .5,'center_y': .07}         
-            on_press: root.current = "principal"
+        BoxLayout:
+            orientation: 'vertical'  
+            spacing: "10dp"  
+            Titulo:
+                text:
+                    ('[b][color=#CB6900]LICENCIATURAS  PARA EJECUTIVOS[/b]')
+            Contenedor:
+                Add_Carrera:
+                    text:'[b]LICENCIATURA EN MERCADEO Y PUBLICIDAD'
+                    background_color: (1, 128/255, 0, 0.8)  
+                    on_press: 
+                        root.current=('carreras')
+                        root.datos('licenciaturaPro',"CTF-24-2014, del 28 de abril de 2014")
+                        root.carrera()
+                Add_Carrera:
+                    text:'[b]LICENCIATURA EN CONTABILIDAD'
+                    background_color: (1, 128/255, 0, 0.8)
+                    on_press: 
+                        root.current=('carreras')
+                        root.datos('licenciaturaPro',"CTF-127-2012 de 12 de noviembre de 2012")
+                        root.carrera() 
+                Add_Carrera:
+                    text:'[b]LICENCIATURA EN COMERCIO INTERNACIONAL'
+                    background_color: (1, 128/255, 0, 0.8)
+                    on_press: 
+                        root.current=('carreras')
+                        root.datos('licenciaturaPro',"CTF-115-2011, del 27 de diciembre de 2011")
+                        root.carrera()
+                Add_Carrera:
+                    text:'[b]LICENCIATURA EN BANCA Y FINANZAS'
+                    background_color: (1, 128/255, 0, 0.8)
+                    on_press: 
+                        root.current=('carreras')
+                        root.datos('licenciaturaPro',"CTF-224-2011, del 27 de abril de 2011")
+                        root.carrera()
+                Add_Carrera:
+                    text:'[b]LICENCIATURA EN INGENIERIA DE SISTEMAS COMPUTACIONALES'
+                    background_color: (1, 128/255, 0, 0.8)
+                        root.current=('carreras')
+                        root.datos('licenciaturaPro',"CACAD-R-03-2009, del 05 de junio de 2009 I Sede: Panama")
+                        root.carrera()
+                Add_Carrera:
+                    text:'[b]LICENCIATURA EN ADMINISTRACION DE RECURSOS HUMANOS'
+                    background_color: (1, 128/255, 0, 0.8)
+                    on_press: 
+                        root.current=('carreras')
+                        root.datos('licenciaturaPro',"CTF-195-2011, del 27 de diciembre de 2011")
+                        root.carrera()
+                Add_Carrera:
+                    text:'[b]LICENCIATURA EN ADMINISTRACION DE NEGOCIOS'
+                    background_color: (1, 128/255, 0, 0.8)
+                    on_press: 
+                        root.current=('carreras')
+                        root.datos('licenciaturaPro',"CTF-124-2012, del 12 de noviembre de 2012")
+                        root.carrera()
+            Boton_Atras:  
+            	background_color: (1, 128/255, 0, 0.8)
+                on_press: root.current = "principal"
     Screen: #Maestria y Postgrados
         name: 'maestria_y_postgrado'
         canvas:
@@ -343,7 +310,7 @@
         Boton_Atras:  
         	color: (0, 0, 0, 1)
         	background_color: (255, 255, 255, 0.9) 
-        	pos_hint:{'center_x': .5,'center_y': .07}       
+        	    
             on_press: root.current = "principal"    
     Facultades: #Arquitectura 
         name: 'arquitectura'
@@ -358,7 +325,7 @@
             multiline: True
         Add_Carrera:
             text:'[b]LIC. EN ARQUITECTURA'      
-            size:(400, 50)
+            
             pos_hint:{'center_x': .5,'center_y': .73}
             on_press: 
                 root.current=('carreras')
@@ -366,7 +333,7 @@
                 root.carrera() 
         Add_Carrera:
             text:'[b]LIC. EN DISEÑO DE INTERIORES[/b]'
-            size:(400, 50)
+            
             pos_hint:{'center_x': .5,'center_y': .63}
             on_press: 
                 root.current=('carreras')
@@ -374,7 +341,7 @@
                 root.carrera() 
         Add_Carrera:
             text:'[b]LIC. EN DISEÑO GRAFICO[/b]'
-            size:(400, 50)
+            
             pos_hint:{'center_x': .5,'center_y': .53}
             on_press: 
                 root.current=('carreras')
@@ -383,7 +350,7 @@
         Add_Carrera:
             text:'[b]        LIC. EN DISEÑO GRAFICO CON\n ENFASIS EN PUBLICIDAD Y MERCADEO[/b]'
             multiline: True
-            size:(400, 50)
+            
             pos_hint:{'center_x': .5,'center_y': .43}
             on_press: 
                 root.current=('carreras')
@@ -392,7 +359,7 @@
         Add_Carrera:
             text:'[b]LIC. EN COMUNICACION AUDIOVISUAL CON\n   ENFASIS EN PRODUCCION DE RADIO Y TV[/b]'
             multiline: True
-            size:(400, 50)
+            
             pos_hint:{'center_x': .5,'center_y': .33}    
             on_press: 
                 root.current=('carreras')
@@ -401,7 +368,7 @@
         Add_Carrera:
             text:'[b]LIC. EN PUBLICIDAD Y MERCADEO CON\n   ENFASIS EN IMAGEN CORPORATIVA[/b]'
             multiline: True
-            size:(400, 50)
+            
             pos_hint:{'center_x': .5,'center_y': .23}    
             on_press: 
                 root.current=('carreras')
@@ -727,7 +694,7 @@
             text:('[b][color=#000000]LIC. EN ING. INDUSTRIAL CON ENFASIS\n        EN GESTION DE OPERACIONES') 
             background_color: (0, 0, 128, 0.5)
             size:(410, 40)
-            pos_hint:{'center_x': .5,'center_y': .48}    
+                
             on_press: 
                 root.current=('carreras')
                 root.datos('ingsistemas',"CTF-52-2014 / 20 de mayo de 2014")
@@ -846,7 +813,7 @@
             multiline: True
             size:(410, 50)
             background_color: (255, 255, 0, 0.8)
-            pos_hint:{'center_x': .5,'center_y': .78}
+            
             on_press: 
                 root.current=('carreras')
                 root.datos('empresarialesmaestria',"CTF-48-2013 del 23 de agosto de 2013")
@@ -856,7 +823,7 @@
             multiline: True
             size:(410, 50)
             background_color: (255, 255, 0, 0.8)
-            pos_hint:{'center_x': .5,'center_y': .68}
+            
             on_press: 
                 root.current=('carreras')
                 root.datos('empresarialesmaestria',"CTF-49-2013 del 23 de agosto de 2013")
@@ -866,7 +833,7 @@
             multiline: True
             size:(410, 50)
             background_color: (255, 255, 0, 0.8)
-            pos_hint:{'center_x': .5,'center_y': .58}
+            
             on_press: 
                 root.current=('carreras')
                 root.datos('empresarialesmaestria',"CTF-155-2012")
@@ -876,7 +843,7 @@
             multiline: True
             size:(410, 50)
             background_color: (255, 255, 0, 0.8)
-            pos_hint:{'center_x': .5,'center_y': .48}
+            
             on_press: 
                 root.current=('carreras')
                 root.datos('empresarialesmaestria',"CTF - 129-2012")
@@ -886,7 +853,7 @@
             multiline: True
             size:(410, 50)
             background_color: (255, 255, 0, 0.8)
-            pos_hint:{'center_x': .5,'center_y': .38}
+           
             on_press: 
                 root.current=('carreras')
                 root.datos('empresarialesmaestria',"CTF-132-2012")
@@ -896,7 +863,7 @@
             multiline: True
             size:(410, 50)
             background_color: (255, 255, 0, 0.8)
-            pos_hint:{'center_x': .5,'center_y': .28}
+           
             on_press: 
                 root.current=('carreras')
                 root.datos('empresarialesmaestria',"CTF-44-2013 del 23 de agosto de 2013")
@@ -905,7 +872,7 @@
             text:'[b][color=#000000]MAESTRIA EN ADMINISTRACION HOTELERA'
             size:(410, 50)
             background_color: (255, 255, 0, 0.8)
-            pos_hint:{'center_x': .5,'center_y': .18}
+           
             on_press: 
                 root.current=('carreras')
                 root.datos('empresarialesmaestria',"CTF-134-2012 del 12 de Noviembre de 2012")
@@ -1184,7 +1151,7 @@
         Boton_Siguiente:
             text: 'Plan de Estudio'
             size:(150, 30)
-            pos_hint:{'center_x': .5,'center_y': .18}
+           
             on_press:  
                 root.carrera() 
                 root.current='planEstudio' 
@@ -1204,7 +1171,8 @@
                 Plan:
                     id: image
                     #source: 'data/plan/'+root.requerimiento
-                    source: 'http://faru.noip.me/data/plan/'+root.requerimiento
+
+                    source: 'http://fa.noip.me/data/plan/'+root.requerimiento
         Boton_Atras:
             on_press:  root.current = "carreras"
     PlanDeEstudio:
@@ -1222,6 +1190,6 @@
                 Plan:
                     id: image
                     #source: 'data/plan/'+root.plan
-                    source: 'http://faru.noip.me/data/plan/'+root.plan
+                    source: 'http://fa.noip.me/data/plan/'+root.plan
         Boton_Atras:
             on_press:  root.current = "carreras"
